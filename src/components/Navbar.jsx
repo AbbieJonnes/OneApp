@@ -1,14 +1,14 @@
 
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
   faLeaf,
   faRightFromBracket,
-  faUserCircle,
+  faCircleUser,
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
 
 function Navbar({ currentUser, onLogout }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,13 +20,18 @@ function Navbar({ currentUser, onLogout }) {
         : 'text-slate-600 hover:bg-slate-50 hover:text-green-800'
     }`;
 
+  function closeMenu() {
+    setMenuOpen(false);
+  }
+
   return (
     <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-        <Link to="/" className="flex items-center gap-2.5">
+        <Link to="/" onClick={closeMenu} className="flex items-center gap-2.5">
           <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-700 text-white shadow-sm">
             <FontAwesomeIcon icon={faLeaf} className="text-lg" />
           </span>
+
           <span>
             <span className="block text-xl font-extrabold tracking-tight text-slate-900">
               my<span className="text-green-700">one</span>
@@ -37,6 +42,7 @@ function Navbar({ currentUser, onLogout }) {
           </span>
         </Link>
 
+        {/* Desktop navigation */}
         <div className="hidden items-center gap-2 md:flex">
           <NavLink to="/" end className={linkClass}>
             Home
@@ -47,15 +53,19 @@ function Navbar({ currentUser, onLogout }) {
               <NavLink to="/dashboard" className={linkClass}>
                 Dashboard
               </NavLink>
+
               <span className="mx-2 h-7 w-px bg-slate-200" />
+
               <span className="flex items-center gap-2 text-sm font-semibold text-slate-700">
                 <FontAwesomeIcon
-                  icon={faUserCircle}
+                  icon={faCircleUser}
                   className="text-green-700"
                 />
                 {currentUser.username}
               </span>
+
               <button
+                type="button"
                 onClick={onLogout}
                 className="ml-2 flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-green-800"
               >
@@ -68,6 +78,7 @@ function Navbar({ currentUser, onLogout }) {
               <NavLink to="/login" className={linkClass}>
                 Login
               </NavLink>
+
               <Link
                 to="/register"
                 className="ml-2 rounded-xl bg-green-700 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-green-800"
@@ -78,9 +89,11 @@ function Navbar({ currentUser, onLogout }) {
           )}
         </div>
 
+        {/* Mobile menu button */}
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 md:hidden"
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
+          className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition hover:bg-green-50 md:hidden"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
         >
@@ -88,52 +101,63 @@ function Navbar({ currentUser, onLogout }) {
         </button>
       </nav>
 
+      {/* Mobile navigation */}
       {menuOpen && (
         <div className="border-t border-slate-100 bg-white px-5 py-4 md:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-2">
-            <Link
+            <NavLink
               to="/"
-              onClick={() => setMenuOpen(false)}
-              className="rounded-lg px-3 py-3 font-semibold hover:bg-green-50"
+              end
+              onClick={closeMenu}
+              className={linkClass}
             >
               Home
-            </Link>
+            </NavLink>
 
             {currentUser ? (
               <>
-                <Link
+                <NavLink
                   to="/dashboard"
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-lg px-3 py-3 font-semibold hover:bg-green-50"
+                  onClick={closeMenu}
+                  className={linkClass}
                 >
                   Dashboard
-                </Link>
-                <p className="px-3 py-2 text-sm text-slate-500">
+                </NavLink>
+
+                <div className="flex items-center gap-2 px-3 py-2 text-sm text-slate-500">
+                  <FontAwesomeIcon
+                    icon={faCircleUser}
+                    className="text-green-700"
+                  />
                   Signed in as {currentUser.username}
-                </p>
+                </div>
+
                 <button
+                  type="button"
                   onClick={() => {
-                    setMenuOpen(false);
+                    closeMenu();
                     onLogout();
                   }}
-                  className="rounded-lg bg-slate-900 px-3 py-3 text-left font-semibold text-white"
+                  className="flex items-center gap-2 rounded-xl bg-slate-900 px-3 py-3 text-left font-semibold text-white transition hover:bg-green-800"
                 >
+                  <FontAwesomeIcon icon={faRightFromBracket} />
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link
+                <NavLink
                   to="/login"
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-lg px-3 py-3 font-semibold hover:bg-green-50"
+                  onClick={closeMenu}
+                  className={linkClass}
                 >
                   Login
-                </Link>
+                </NavLink>
+
                 <Link
                   to="/register"
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-lg bg-green-700 px-3 py-3 font-semibold text-white"
+                  onClick={closeMenu}
+                  className="rounded-xl bg-green-700 px-3 py-3 text-center font-semibold text-white transition hover:bg-green-800"
                 >
                   Create account
                 </Link>
