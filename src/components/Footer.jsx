@@ -160,16 +160,23 @@ function Footer() {
           </p>
 
           <a
-            href="mailto:YOUR_EMAIL@example.com"
+            href="mailto:abigaelmwangi534@gmail.com"
             className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-green-400 transition hover:text-green-300"
           >
             <FontAwesomeIcon icon={faEnvelope} />
             Email us
           </a>
 
+          <a
+            href="mailto:humphreychahale99@gmail.com"
+            className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-green-400 transition hover:text-green-300"
+          >
+            <FontAwesomeIcon icon={faEnvelope} />
+            humphreychahale99@gmail.com
+          </a>
+
           <p className="mt-4 text-xs leading-5 text-slate-500">
-            This is an independent frontend project and is not an official
-            Safaricom service.
+            This is an independent frontend project
           </p>
         </div>
       </div>
