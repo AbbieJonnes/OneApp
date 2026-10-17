@@ -66,7 +66,7 @@ export default function Dashboard({ user }) {
             <span className="banner-label">WELCOME TO MYONE</span>
             <h2>Everything you need, in one place.</h2>
             <p>
-              Your demo account is ready. Explore the features and
+              Your account is ready. Explore the features and
               discover a simpler way to view your account.
             </p>
             <span className="banner-status">
