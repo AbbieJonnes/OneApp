@@ -164,7 +164,7 @@ function Footer() {
             className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-green-400 transition hover:text-green-300"
           >
             <FontAwesomeIcon icon={faEnvelope} />
-            Email us
+            abigaelmwangi534@gmail.com
           </a>
 
           <a
