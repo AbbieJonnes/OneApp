@@ -183,9 +183,11 @@ GitHub: [AbbieJonnes](https://github.com/AbbieJonnes)
 ---
 
 ## Live Website
-[Visit OneApp](https://abbiejonnes.github.io/OneApp/)
+[Visit OneApp](https://abbiejonnes.github.io/OneApp/),  https://one-app-dusky.vercel.app/
 
 OneApp is a responsive web application inspired by the convenience of modern digital self-service platforms. It brings account registration, sign-in, and a personalized dashboard into one clean and accessible interface.
 
+## License
+This project is under the MIT License
 
 &copy; 2026 Abigael Mwangi. All rights reserved.
