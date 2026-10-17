@@ -7,51 +7,26 @@ import Landing from './pages/Landing';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-
-const USERS_KEY = 'myone_users';
-const SESSION_KEY = 'myone_current_user';
-
-export function getRegisteredUsers() {
-  try {
-    return JSON.parse(localStorage.getItem(USERS_KEY)) || [];
-  } catch {
-    return [];
-  }
-}
-
-export function saveRegisteredUsers(users) {
-  localStorage.setItem(USERS_KEY, JSON.stringify(users));
-}
-
-function getSavedUser() {
-  try {
-    return JSON.parse(localStorage.getItem(SESSION_KEY));
-  } catch {
-    return null;
-  }
-}
+import {
+  clearCurrentUser,
+  getSavedUser,
+  saveCurrentUser,
+} from './utils/auth';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(getSavedUser);
   const navigate = useNavigate();
 
   function handleLogin(user) {
-    const sessionUser = {
-      username: user.username,
-      fullName: user.fullName,
-      email: user.email,
-      phone: user.phone,
-    };
-
-    localStorage.setItem(SESSION_KEY, JSON.stringify(sessionUser));
+    const sessionUser = saveCurrentUser(user);
     setCurrentUser(sessionUser);
-    navigate('/dashboard');
+    navigate('/dashboard', { replace: true });
   }
 
   function handleLogout() {
-    localStorage.removeItem(SESSION_KEY);
+    clearCurrentUser();
     setCurrentUser(null);
-    navigate('/');
+    navigate('/', { replace: true });
   }
 
   return (
@@ -61,6 +36,7 @@ function App() {
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Landing currentUser={currentUser} />} />
+
           <Route
             path="/register"
             element={
@@ -71,6 +47,7 @@ function App() {
               )
             }
           />
+
           <Route
             path="/login"
             element={
@@ -81,6 +58,7 @@ function App() {
               )
             }
           />
+
           <Route
             path="/dashboard"
             element={
@@ -91,6 +69,7 @@ function App() {
               )
             }
           />
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
