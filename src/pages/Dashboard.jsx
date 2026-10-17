@@ -1,249 +1,187 @@
 
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faMobileScreenButton,
-  faWifi,
-  faWallet,
-  faPhone,
-  faArrowUpRightFromSquare,
-  faClockRotateLeft,
-  faShieldHalved,
-  faCircleCheck,
-  faChevronRight,
+  faArrowRight,
   faBell,
-  faEllipsis,
+  faCircleCheck,
+  faEnvelope,
+  faGear,
+  faMobileScreenButton,
+  faShieldHalved,
+  faUser,
+  faUserCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
 
-const services = [
-  {
-    icon: faMobileScreenButton,
-    title: 'My line',
-    description: 'View your mobile account',
-    color: 'green-bg',
-  },
-  {
-    icon: faWifi,
-    title: 'Data bundles',
-    description: 'Explore connectivity',
-    color: 'blue-bg',
-  },
-  {
-    icon: faWallet,
-    title: 'My balances',
-    description: 'View sample balances',
-    color: 'orange-bg',
-  },
-  {
-    icon: faPhone,
-    title: 'My number',
-    description: 'Your account details',
-    color: 'purple-bg',
-  },
-];
+function Dashboard({ user, onLogout }) {
+  const firstName = user.fullName.trim().split(/\s+/)[0];
 
-export default function Dashboard({ user }) {
-  const firstName = user.name.split(' ')[0];
+  const services = [
+    {
+      icon: faUser,
+      title: 'Personal information',
+      description: 'View the name and username associated with your account.',
+      color: 'bg-green-100 text-green-800',
+    },
+    {
+      icon: faMobileScreenButton,
+      title: 'Contact details',
+      description: 'Review the phone number you entered during registration.',
+      color: 'bg-sky-100 text-sky-800',
+    },
+    {
+      icon: faBell,
+      title: 'Notifications',
+      description: 'This area can be used for account updates and notices.',
+      color: 'bg-amber-100 text-amber-800',
+    },
+    {
+      icon: faGear,
+      title: 'Account settings',
+      description: 'Your account information at a glance.',
+      color: 'bg-violet-100 text-violet-800',
+    },
+  ];
 
   return (
-    <main className="dashboard-page">
-      <div className="dashboard-container">
-        <div className="dashboard-topbar">
-          <div>
-            <span className="section-kicker">YOUR PERSONAL SPACE</span>
-            <h1>Good to see you, {firstName}.</h1>
-            <p>Here's your account overview at a glance.</p>
-          </div>
+    <section className="min-h-[70vh] bg-slate-50 px-5 py-10 sm:py-14">
+      <div className="mx-auto max-w-7xl">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-green-900 via-green-800 to-green-600 p-7 text-white shadow-lg sm:p-10">
+          <div className="pointer-events-none absolute -right-10 -top-20 h-64 w-64 rounded-full border-[35px] border-white/10" />
+          <div className="pointer-events-none absolute bottom-0 right-40 h-24 w-24 rounded-full bg-white/5" />
 
-          <button className="notification-button" aria-label="Notifications">
-            <FontAwesomeIcon icon={faBell} />
-            <span />
-          </button>
-        </div>
-
-        <div className="dashboard-banner">
-          <div className="banner-content">
-            <span className="banner-label">WELCOME TO MYONE</span>
-            <h2>Everything you need, in one place.</h2>
-            <p>
-              Your account is ready. Explore the features and
-              discover a simpler way to view your account.
-            </p>
-            <span className="banner-status">
-              <FontAwesomeIcon icon={faCircleCheck} />
-              Account created successfully
-            </span>
-          </div>
-
-          <div className="banner-art">
-            <div className="banner-ring banner-ring-one" />
-            <div className="banner-ring banner-ring-two" />
-            <div className="banner-phone">
-              <FontAwesomeIcon icon={faMobileScreenButton} />
-              <span>myone</span>
-              <div className="banner-phone-line" />
-              <div className="banner-phone-line short-line" />
-              <FontAwesomeIcon icon={faCircleCheck} className="banner-phone-check" />
-            </div>
-          </div>
-        </div>
-
-        <div className="dashboard-section-heading">
-          <div>
-            <h2>Your overview</h2>
-            <p>Illustrative values for this demo.</p>
-          </div>
-          <span className="demo-badge">DEMO DATA</span>
-        </div>
-
-        <div className="balance-grid">
-          <article className="balance-card">
-            <div className="balance-card-top">
-              <span className="balance-icon green-bg">
-                <FontAwesomeIcon icon={faWallet} />
-              </span>
-              <FontAwesomeIcon icon={faEllipsis} className="muted-icon" />
-            </div>
-            <span className="balance-label">Airtime balance</span>
-            <h3>KES 850.00</h3>
-            <p>Sample account balance</p>
-          </article>
-
-          <article className="balance-card">
-            <div className="balance-card-top">
-              <span className="balance-icon blue-bg">
-                <FontAwesomeIcon icon={faWifi} />
-              </span>
-              <FontAwesomeIcon icon={faEllipsis} className="muted-icon" />
-            </div>
-            <span className="balance-label">Data remaining</span>
-            <h3>4.5 GB</h3>
-            <p>Sample data allowance</p>
-            <div className="progress-track">
-              <div className="progress-fill" />
-            </div>
-          </article>
-
-          <article className="balance-card">
-            <div className="balance-card-top">
-              <span className="balance-icon orange-bg">
-                <FontAwesomeIcon icon={faMobileScreenButton} />
-              </span>
-              <FontAwesomeIcon icon={faEllipsis} className="muted-icon" />
-            </div>
-            <span className="balance-label">Account status</span>
-            <h3 className="status-value">Active</h3>
-            <p>Demo account status</p>
-          </article>
-        </div>
-
-        <div className="dashboard-lower-grid">
-          <section className="dashboard-panel">
-            <div className="panel-heading">
-              <div>
-                <h2>Quick services</h2>
-                <p>Explore your account shortcuts.</p>
-              </div>
-            </div>
-
-            <div className="services-grid">
-              {services.map((service) => (
-                <article className="dashboard-service" key={service.title}>
-                  <span className={`service-icon ${service.color}`}>
-                    <FontAwesomeIcon icon={service.icon} />
-                  </span>
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                  <span className="service-arrow">
-                    <FontAwesomeIcon icon={faChevronRight} />
-                  </span>
-                </article>
-              ))}
-            </div>
-
-            <p className="feature-note">
-              <FontAwesomeIcon icon={faShieldHalved} />
-              Service cards are visual demonstrations only.
-            </p>
-          </section>
-
-          <aside className="dashboard-panel account-panel">
-            <div className="panel-heading">
-              <div>
-                <h2>My profile</h2>
-                <p>Your registered details.</p>
-              </div>
-            </div>
-
-            <div className="profile-summary">
-              <div className="profile-avatar">
-                {firstName.charAt(0).toUpperCase()}
-              </div>
-              <div>
-                <h3>{user.name}</h3>
-                <span>Demo member</span>
-              </div>
-            </div>
-
-            <div className="profile-detail">
-              <span>EMAIL ADDRESS</span>
-              <p>{user.email}</p>
-            </div>
-
-            <div className="profile-detail">
-              <span>PHONE NUMBER</span>
-              <p>{user.phone || 'Not provided'}</p>
-            </div>
-
-            <div className="profile-detail">
-              <span>ACCOUNT TYPE</span>
-              <p>MyOne Demo</p>
-            </div>
-
-            <Link to="/" className="profile-link">
-              Back to homepage
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-            </Link>
-          </aside>
-        </div>
-
-        <section className="dashboard-panel activity-panel">
-          <div className="panel-heading">
+          <div className="relative flex flex-col justify-between gap-7 sm:flex-row sm:items-center">
             <div>
-              <h2>Recent activity</h2>
-              <p>Your account activity overview.</p>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-green-50">
+                <FontAwesomeIcon icon={faCircleCheck} />
+                Signed in successfully
+              </div>
+
+              <h1 className="mt-5 text-3xl font-black tracking-tight sm:text-4xl">
+                Welcome, {firstName}!
+              </h1>
+              <p className="mt-3 max-w-2xl leading-7 text-green-50">
+                It's good to have you here. Your personal My One dashboard is
+                ready for you.
+              </p>
             </div>
-            <FontAwesomeIcon icon={faClockRotateLeft} className="muted-icon" />
+
+            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl border border-white/20 bg-white/10 text-4xl">
+              <FontAwesomeIcon icon={faUserCircle} />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="flex items-center gap-3">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-green-800">
+                <FontAwesomeIcon icon={faUser} className="text-lg" />
+              </span>
+              <div>
+                <p className="text-sm text-slate-500">Full name</p>
+                <p className="font-bold text-slate-900">{user.fullName}</p>
+              </div>
+            </div>
           </div>
 
-          <div className="activity-row">
-            <span className="activity-icon green-bg">
-              <FontAwesomeIcon icon={faCircleCheck} />
-            </span>
-            <div className="activity-description">
-              <h3>Account registered</h3>
-              <p>Your profile was created successfully.</p>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="flex items-center gap-3">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-sky-100 text-sky-800">
+                <FontAwesomeIcon icon={faUserCircle} className="text-lg" />
+              </span>
+              <div>
+                <p className="text-sm text-slate-500">Username</p>
+                <p className="font-bold text-slate-900">@{user.username}</p>
+              </div>
             </div>
-            <span className="activity-tag">Completed</span>
           </div>
 
-          <div className="activity-row">
-            <span className="activity-icon blue-bg">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:col-span-2 lg:col-span-1">
+            <div className="flex items-center gap-3">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-100 text-violet-800">
+                <FontAwesomeIcon icon={faEnvelope} className="text-lg" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-sm text-slate-500">Email address</p>
+                <p className="break-all font-bold text-slate-900">
+                  {user.email}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10">
+          <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-green-700">
+                Your space
+              </p>
+              <h2 className="mt-2 text-2xl font-black text-slate-950">
+                Account overview
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-slate-500">
+                Explore the sections available in your dashboard.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {services.map((service) => (
+              <article
+                key={service.title}
+                className="rounded-2xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:border-green-200 hover:shadow-lg hover:shadow-slate-900/5"
+              >
+                <span
+                  className={`flex h-12 w-12 items-center justify-center rounded-xl ${service.color}`}
+                >
+                  <FontAwesomeIcon icon={service.icon} className="text-lg" />
+                </span>
+                <h3 className="mt-5 font-extrabold text-slate-900">
+                  {service.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-500">
+                  {service.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-col justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-6 sm:flex-row sm:items-center">
+          <div className="flex items-start gap-3">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-green-100 text-green-800">
               <FontAwesomeIcon icon={faShieldHalved} />
             </span>
-            <div className="activity-description">
-              <h3>Account access</h3>
-              <p>You can view your dashboard and profile.</p>
+            <div>
+              <h3 className="font-bold text-slate-900">Your account</h3>
+              <p className="mt-1 text-sm leading-6 text-slate-500">
+                Signed in as {user.email}. You can sign out whenever you're
+                finished.
+              </p>
             </div>
-            <span className="activity-tag">Available</span>
           </div>
-        </section>
 
-        <footer className="dashboard-footer">
-          <span>&copy; 2026 MyOne Demo</span>
-          <span>Independent design demonstration</span>
-        </footer>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+            >
+              Home
+              <FontAwesomeIcon icon={faArrowRight} />
+            </Link>
+            <button
+              onClick={onLogout}
+              className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-bold text-white transition hover:bg-green-800"
+            >
+              Sign out
+            </button>
+          </div>
+        </div>
       </div>
-    </main>
+    </section>
   );
 }
+
+export default Dashboard;
