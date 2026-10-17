@@ -10,7 +10,7 @@ import {
   faLeaf,
   faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
-import { getRegisteredUsers, saveRegisteredUsers } from '../App';
+import { getRegisteredUsers, saveRegisteredUsers } from '../utils/auth';
 
 function Register() {
   const navigate = useNavigate();
