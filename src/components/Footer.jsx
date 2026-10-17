@@ -1,10 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faArrowUpRightFromSquare,
-  faEnvelope,
-} from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import {
   faFacebookF,
   faInstagram,
@@ -37,25 +34,10 @@ const socialLinks = [
   },
 ];
 
-const externalLinks = [
-  {
-    label: 'Safaricom website',
-    href: 'https://www.safaricom.co.ke/',
-  },
-  {
-    label: 'About Safaricom',
-    href: 'https://www.safaricom.co.ke/about/',
-  },
-  {
-    label: 'Contact Safaricom',
-    href: 'https://www.safaricom.co.ke/contact-us/',
-  },
-];
-
 function Footer() {
   return (
     <footer className="bg-slate-950 text-slate-300">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-3 lg:px-8">
         {/* Brand */}
         <div>
           <Link to="/" className="inline-flex items-center gap-2">
@@ -127,30 +109,6 @@ function Footer() {
           </ul>
         </div>
 
-        {/* External websites */}
-        <div>
-          <h3 className="font-bold text-white">Useful links</h3>
-
-          <ul className="mt-4 space-y-3 text-sm">
-            {externalLinks.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 transition hover:text-green-400"
-                >
-                  {item.label}
-                  <FontAwesomeIcon
-                    icon={faArrowUpRightFromSquare}
-                    className="text-xs"
-                  />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
         {/* Contact */}
         <div>
           <h3 className="font-bold text-white">Get in touch</h3>
@@ -159,24 +117,26 @@ function Footer() {
             Have a question about this website?
           </p>
 
-          <a
-            href="mailto:abigaelmwangi534@gmail.com"
-            className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-green-400 transition hover:text-green-300"
-          >
-            <FontAwesomeIcon icon={faEnvelope} />
-            abigaelmwangi534@gmail.com
-          </a>
+          <div className="mt-3 flex flex-col items-start gap-3">
+            <a
+              href="mailto:abigaelmwangi534@gmail.com"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-green-400 transition hover:text-green-300"
+            >
+              <FontAwesomeIcon icon={faEnvelope} />
+              abigaelmwangi534@gmail.com
+            </a>
 
-          <a
-            href="mailto:humphreychahale99@gmail.com"
-            className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-green-400 transition hover:text-green-300"
-          >
-            <FontAwesomeIcon icon={faEnvelope} />
-            humphreychahale99@gmail.com
-          </a>
+            <a
+              href="mailto:humphreychahale99@gmail.com"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-green-400 transition hover:text-green-300"
+            >
+              <FontAwesomeIcon icon={faEnvelope} />
+              humphreychahale99@gmail.com
+            </a>
+          </div>
 
           <p className="mt-4 text-xs leading-5 text-slate-500">
-            This is an independent frontend project
+            This is an independent frontend project.
           </p>
         </div>
       </div>
